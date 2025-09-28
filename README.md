@@ -53,8 +53,44 @@ python ./docs/scrapping.py
  - Os embeddings serão salvos no banco vetorial na pasta `./db_intercambio`
 
 ### 4. Rode o servidor
-- Como esse modelo de linguagem rodará em nuvem, certifique-se de ter uma conta ollama.
+- Como esse modelo de linguagem rodará em nuvem, certifique-se de ter uma conta Ollama.
 ```bash
  ollama pull deepseek-v3.1:671b-cloud
  python app.py
  ```
+---
+
+## 🧩 O que foi feito 
+
+Este projeto utiliza o paradigma de **RAG (Retrieval-Augmented Generation)**, que combina a capacidade de raciocínio e geração de texto dos **modelos de linguagem (LLMs)** com a confiabilidade de informações estruturadas extraídas de documentos oficiais. Na prática, os editais são convertidos em texto e divididos em **chunks**, que são transformados em **embeddings** (vetores numéricos que representam semanticamente o conteúdo) e armazenados em uma base vetorial (ChromaDB). Quando o usuário faz uma pergunta, a aplicação calcula o embedding da pergunta e realiza uma **busca semântica** para recuperar os chunks mais relevantes, garantindo que o modelo não precise “inventar” informações. Esses chunks, junto com a pergunta do usuário, são enviados ao modelo Ollama na nuvem, que gera uma resposta didática e contextualizada. Dessa forma, a abordagem RAG permite que o chatbot forneça respostas precisas e confiáveis, mantendo a capacidade de linguagem natural e explicação detalhada, ao mesmo tempo em que aproveita dados reais como referência, equilibrando geração de texto e veracidade das informações.
+
+As principais etapas foram:  
+
+1. **Extração de dados**:  
+   - Os editais em PDF foram processados e convertidos em texto.  
+   - Esse texto foi dividido em **chunks** (fragmentos menores) para melhor indexação.  
+
+2. **Criação de base vetorial**:  
+   - Cada chunk foi transformado em um **vetor numérico** (embedding) usando o modelo `nomic-embed-text`.  
+   - Os vetores foram armazenados em um banco **ChromaDB persistente (SQLite3)**.  
+
+3. **Busca semântica**:  
+   - Quando o usuário faz uma pergunta, a aplicação gera o embedding da pergunta e busca os chunks mais relevantes na base vetorial via **similaridade de cosseno**.  
+
+4. **Integração com LLM (Ollama Cloud)**:  
+   - Os chunks recuperados são enviados junto com a pergunta para o modelo de linguagem.  
+   - O modelo gera uma resposta didática, utilizando o contexto dos documentos reais.  
+
+5. **API Flask**:  
+   - Foi criada uma rota `/chat` que recebe perguntas via requisições `POST`.  
+   - A API retorna uma resposta em JSON pronta para ser consumida pelo frontend.  
+
+6. **Frontend Web**:  
+   - Desenvolvido com **HTML, CSS puro e JavaScript**.  
+   - O usuário digita a pergunta em um campo de input e clica em "Enviar".  
+   - Um **script JS** envia a pergunta para o backend Flask via **fetch API** (`POST /chat`).  
+   - A resposta retornada em JSON é exibida dinamicamente na página.  
+
+---
+
+
