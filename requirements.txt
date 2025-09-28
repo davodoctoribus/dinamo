@@ -4,8 +4,9 @@ ollama
 
 langchain
 langchain-community
+langchain-chromadb
+langchain-ollama
 openai
 pypdf2
 chromadb
-
 sentence-transformers
