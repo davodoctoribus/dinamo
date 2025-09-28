@@ -1,3 +1,11 @@
 flask
 flask-cors
 ollama
+
+langchain
+langchain-community
+openai
+pypdf2
+chromadb
+
+sentence-transformers
