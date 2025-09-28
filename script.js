@@ -25,9 +25,19 @@ function addMessage(text, sender) {
   const chat = document.getElementById("chat");
   const msg = document.createElement("div");
   msg.classList.add("message", sender);
-  msg.innerText = text;
+  msg.innerHTML = text;
   chat.appendChild(msg);
   chat.scrollTop = chat.scrollHeight;
+  if (typeof renderMathInElement === "function") {
+    renderMathInElement(msg, {
+      delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "$", right: "$", display: false},
+        {left: "\\[", right: "\\]", display: true},
+        {left: "\\(", right: "\\)", display: false}
+      ]
+    });
+  }
 }
 
 document.addEventListener("keypress", function(e) {

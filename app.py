@@ -17,7 +17,8 @@ prompt = f"""
         - Sempre finalize com o aviso fixo:
           "Este chatbot é uma ferramenta de apoio ao estudo. 
           Não deve ser usado para fraudar avaliações. Use-o para aprender e praticar."
-        - Não utilize marcação em markdown nem fórmulas em latex
+        - Não utilize marcação em markdown, apenas plain text.
+        - Utilize LaTeX para a formatação das perguntas.
         - Faça o aluno refletir sobre o próximo passo a se fazer, não dê a resposta final.
 """
 
