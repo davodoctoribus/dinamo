@@ -12,4 +12,49 @@ Por isso, desenvolvemos um chatbot, do zero, que possa ajudar com informações 
 
 ---
 
-## 
+## 🚀 Funcionalidades  
+
+- 📚 **Busca semântica** em editais e documentos oficiais.  
+- 🎓 Respostas **didáticas e contextualizadas** sobre processos de intercâmbio.  
+- 🔍 Recuperação de trechos relevantes dos PDFs para justificar a resposta.  
+- 🌐 **Interface web simples** com backend em Flask.  
+- 💾 Base vetorial persistida em **SQLite3 + ChromaDB**.
+
+---
+
+## 🛠️ Tecnologias Utilizadas  
+
+- [Python 3.10+](https://www.python.org/)  
+- [Flask](https://flask.palletsprojects.com/)
+- [LangChain](https://www.langchain.com/)  
+- [Chroma](https://www.trychroma.com/) (armazenamento vetorial)  
+- [Ollama](https://ollama.com/) (modelos de linguagem e embeddings)  
+
+## ⚙️ Como rodar o projeto  
+
+### 1. Clonar repositório  
+
+```bash
+git clone https://github.com/davodoctoribus/dinamo
+cd dinamo
+```
+### 2. Instalar dependências 
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Criar base vetorial
+
+ - Adicione as fontes em PDF na pasta `./docs/data` e rode:
+```bash
+ollama pull nomic-embed-text
+python ./docs/scrapping.py
+```
+ - Os embeddings serão salvos no banco vetorial na pasta `./db_intercambio`
+
+### 4. Rode o servidor
+- Como esse modelo de linguagem rodará em nuvem, certifique-se de ter uma conta ollama.
+```bash
+ ollama pull deepseek-v3.1:671b-cloud
+ python app.py
+ ```
