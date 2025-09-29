@@ -1,6 +1,8 @@
 # ChatBot Dinamo! 🚀
 Esta é a implementação prática da Equipe Roxa no PS do PET ENG COMP. Bem-vindo ao README do nosso projeto!
 
+![Tela Inicial](img/image.png)
+
 ---
 
 ## 📝 Sobre o Projeto
@@ -58,6 +60,14 @@ python ./docs/scrapping.py
  ollama pull deepseek-v3.1:671b-cloud
  python app.py
  ```
+### 5. Teste o Dinamo!
+
+- Abra o `index.html` em seu navegador.
+- Digite uma pergunta sobre intercâmbio ou duplo diploma e clique em Enviar.
+- O JavaScript do frontend enviará a pergunta ao Flask, que fará a busca semântica na base vetorial e enviará a pergunta junto com o contexto para o modelo Ollama.
+- A resposta será exibida dinamicamente na página.
+
+![Dinamo em ação](img/screenshot.png)
 ---
 
 ## 🧩 O que foi feito 
